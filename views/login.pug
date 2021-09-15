@@ -1,0 +1,40 @@
+head
+  style
+    include ./login.css
+body 
+  include ./partials/header.pug
+  div.container
+    form(
+    action="/login"
+    method="post"
+    
+    )
+      h4.heading Login here
+      if msg
+        h5.msg #{msg}
+      if warn
+        h5.warn #{warn}
+      div.form
+        h5 Username/email
+        input(
+        type="email"
+        name="email"
+        class="email"
+        required
+        value= formData ? formdata.email : ""
+        )
+        h5 Password
+        input(
+        type="password"
+        name="password"
+        required
+        value= formData ? formData.password : ""
+        )
+        a(href="/forget"
+        class="link"
+        ) Forgot password 
+        button(type="submit") Login
+        p.link Not have an account 
+          a(href="/signup") Sign up 
+          here
+  include ./partials/footer.pug

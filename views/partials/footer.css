@@ -1,0 +1,33 @@
+
+
+footer{
+  background:#222;
+  padding:10px 20px;
+  color:#fff;
+  text-align: center;
+  position:sticky;
+  top:100%;
+  margin:50px 0 0;
+  bottom:0;
+}
+footer .logo{
+font-family: 'Satisfy', cursive;
+  margin:0 20px ;
+  color:#009875;
+  text-align: left;
+  font-size: 1rem;
+}
+footer .contact{
+  text-align: left;
+  margin:0px 30px;
+  color:#999;
+  font-size: .8rem;
+  padding-bottom:10px;
+  border-bottom:.5px solid #ddd;
+ 
+}
+footer p{
+  font-size: .8rem;
+margin:8px 0;
+  color:#999;
+}

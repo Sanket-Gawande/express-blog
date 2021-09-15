@@ -1,0 +1,42 @@
+html
+  head
+    title Express it - blog app
+    style 
+      include header.css
+    script  
+      include ../javascript.js
+    meta(
+    name="theme-color"
+    content="#000"
+    )
+    meta(
+    name="viewport"
+    content="width=device-width , initial-scale=1.0"
+    )
+    link(
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer" 
+    )
+  body 
+    nav.navbar
+      h4.logo express-it
+      ul.menu
+        li  
+           a(href="/") Home
+        li  
+           a(href="/about") About
+        if session.user
+          li 
+            a(href="/profile") My Account
+          li 
+            a(href="/logout") Logout
+        else
+          li 
+            a(href="/login") Login
+          li 
+            a(href="/signup") Sign-up
+          
+        

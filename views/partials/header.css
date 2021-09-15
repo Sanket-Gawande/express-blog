@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&family=Ubuntu:wght@300&display=swap');
+
+
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  list-style: none;
+}
+body{
+
+  min-height: 100vh;
+}
+nav{
+  width:100vw;
+  padding:10px;
+  background:#fff;
+  }
+nav .logo{
+  padding:0 0 5px;
+  color:#000;
+  text-align: center;
+  height:50px;
+  font-size: 2rem;
+  font-family: 'Satisfy', cursive;
+  font-weight: 300!important;
+  color:#009875
+}
+nav .menu{
+  display:flex;
+  justify-content: center;
+  border-top:.5px dotted #999;
+  border-bottom:.5px dotted #999;
+  align-items: center;
+  
+}
+.menu li{
+  margin:0 10px;
+  color:#888;
+}
+.menu li:hover{
+  color:#000;
+}
+.menu a{
+  color: inherit;
+}

@@ -1,0 +1,56 @@
+head
+  style
+    include ./login.css
+body 
+  include ./partials/header.pug
+  div.container
+    form(
+    action="/signup"
+    method="post"
+    
+    )
+      h4.heading Create account
+      if msg
+        h5.warn #{msg}
+      div.form
+        h5 First name
+        input(
+        type="text"
+        name="fname"
+        required
+        value= form ? form.fname : ""
+        )
+        h5 Last name
+        input(
+        type="text"
+        name="lname"
+        
+        value= form ? form.lname : ""
+        )
+        h5 Username/email
+        input(
+        type="email"
+        name="email"
+        class="email"
+        required
+        value= form ? form.email : ""
+        )
+        h5 Password
+        input(
+        type="password"
+        name="password"
+        required
+        value= form ? form.password : ""
+        )
+        h5 Confirm password
+        input(
+        type="password"
+        name="cpassword"
+        required
+        value= form ? form.cpassword : ""
+        )
+        button(type="submit") Create account
+        p.link Already have an account 
+          a(href="/login") Login
+          here
+  include ./partials/footer.pug

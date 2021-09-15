@@ -1,0 +1,114 @@
+head
+  include ./partials/header.pug
+  
+  style
+    include ./account.css
+body
+  div.container
+    form(
+    action="/profile/update"
+    method="post"
+    enctype="multipart/form-data"
+    class="profile"
+    )
+      h2.heading Edit profile here
+        small  (tap on fields edit)
+      label(
+      for="profile"
+      class='profilePic'
+      )
+        img(
+        src=user? `../${user[0].profile_pic}` : "http://file-sharing-247.000webhostapp.com/files/Sanket_a462f8c334e328ba8f572ca0a51c4861.jpg"
+        id="preview"
+        )
+    
+      input(
+      type="file"
+      id="profile"
+      name="display-picture"
+      
+      )
+      input(
+      type="hidden"
+      name="current_img"
+      value=user?user[0].profile_pic : ""
+      )
+      input(
+      type="text"
+      class="name"
+      name="name"
+      value= user ? user[0].fname + " " + user[0].lname : "Your name"
+      )
+      input(
+      class="email"
+      value= user ? user[0].email : "Your email"
+      name="email"
+      
+      )
+      input(
+      class="bio"
+      name="bio"
+      value= user ? user[0].bio: "Add bio here"
+      )
+      button(
+      type="submit"
+     
+      ) Save changes
+    div.posts
+      div.addpost
+        form(
+        action="/post"
+        method="post"
+        enctype="multipart/form-data"
+        )
+          h2.heading Create a beutiful post .
+          label(
+      for="thumbnail"
+      class='post-thumbnail'
+      )
+            img(
+        src ="https://file-sharing-247.000webhostapp.com/files/Pp_e63cd25340a228ae227c12532dc63f65.jpg"
+        id='post_preview'
+        )
+
+          input(
+      type="file"
+      id="thumbnail"
+      name="thumbnail"
+      
+      )
+          input(
+      type="text"
+      class="post-tittle"
+      name="tittle"
+    placeholder="Add tittle"
+      )
+          textarea(
+      rows:10;
+      class="post-content"
+      name="discription"
+      placeholder="Your description here...."
+      )
+          button(
+      type="Submit"
+     
+      ) Post now 
+  div.posts-posted
+
+        each post in blog
+          a(href=`blog/user/${post.id}`)
+            div.post
+              img(
+              src=post.thumbnail
+              )
+              h4.blog-heading=post.tittle
+              p.blog-text-content=post.description
+              span.post-date=post.time
+              span.post-user=post.user
+      
+      
+  include ./partials/footer
+  
+    
+    
+    

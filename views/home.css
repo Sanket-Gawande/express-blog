@@ -1,0 +1,259 @@
+
+.hero{
+  width:100vw;
+  height:500px;
+  background:url("https://images.unsplash.com/photo-1626816366619-f91a4d747ea7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=667&q=80") no-repeat center center/cover;
+  display:grid;
+  place-items: center;
+}
+.quote-div{
+  width:80%;
+  
+  border:2px solid transparent;
+  background: linear-gradient(rgba(0,0,0,.4) , rgba(255,255 ,255 ,.5)) , rgba(255 , 255 , 255 , .2);
+  backdrop-filter: blur(5px);
+  color:#000;
+  border-radius: 5px;
+  box-shadow: 
+            inset -2px  -2px 25px rgba(0,0,0,.05);
+  padding:20px 30px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  
+  color:#fff;
+}
+.quote-div i.fa-quote-left{
+  color:#fff;
+  font-size:1.5rem;
+  margin:0 -5px;
+}
+@media(max-width:768px){
+  .quote-div{
+    width:90%;
+    height:;
+  }
+  .posts , .aside{
+    width:100%;
+  }
+  .posts {
+  
+    border-bottom:1px solid #000;
+  }
+  .posts a {margin:30px;}
+}
+.quote{
+  padding:10px;
+  font-size: 1.2rem;
+  text-align: left;
+}
+.author {
+  margin-top:10px;
+  text-align: right;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.new-quote{
+  position: absolute;
+  bottom:0;
+  right:0;
+  padding:5px 10px;
+  border:none;
+  color:#009875;
+  margin-top:10px;
+  background:none;
+}
+.date{
+  padding:10px 20px;
+  color:#009875;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+ margin:0 0 5px;
+ font-size: .8rem;
+  outline:1px solid #555;
+}
+.container{
+  display:flex;
+  overflow: hidden;
+ 
+}
+.posts{
+  width:50%;
+  padding:20px;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: scroll;
+ 
+}
+.posts a{
+  width:180px;
+  height:320px;
+  background:#fff;
+  border-radius: 5px;
+  border:1px solid #009875;
+  margin:20px 10px;
+}
+.post {
+  height:100%;
+  width:100%;
+  z-index: 1;
+  overflow: hidden;
+  position: relative;
+  
+}
+a .post:before{
+  content: "";
+  position: absolute;
+  bottom:0;
+  width:100%;
+  left:0;
+  height:90px;
+  background:linear-gradient(to bottom , transparent , #fff);
+}
+.post img{
+  width:100%;
+  height:50%;
+  background:#fff;
+  padding:5px;
+  border-radius: 5px;
+  position: relative;
+  
+}
+.post h4:after{
+  content:" ";
+  width:50px;
+  height:3px;
+  background:#009875;
+  border-radius: 5px;
+  position: absolute;
+  top:-10px;
+  margin-left:50%;
+  left:-25px;
+}
+a .post h4{
+  margin:5px 0;
+  padding:5px;
+  font-size: .8rem;
+  color:#009875;
+  font-weight:bold;
+  position: relative;
+}
+.post p{
+  font-size: .8rem;
+  color:#555;
+  margin:5px 0;
+  padding:5px;
+}
+.post .post-date 
+{bottom:-15px}
+.post-date ,  .post-user{
+  display:block;
+  width:100%;
+  padding:0 10px;
+  text-align: right;
+  font-size: .6rem;
+  color:#777;
+  position: absolute;
+  bottom:15px;
+  font-weight: 800 !important;
+}
+
+@media(max-width:768px){
+  .container{
+    flex-direction:column;
+
+   justify-content:  center;
+   align-items: center;
+}
+.aside{
+  width:100% !important;
+}
+}
+.posts{
+  width:100%;
+  padding:20px 10px;
+}
+/* Aside styling here*/
+.aside{
+  width:50%;
+  padding:20px 10px;
+ border-left: 1px solid #555;
+ 
+ 
+}
+
+.aside h4{
+ text-align: center;
+}
+.category{
+  padding:10px 30px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width:100vw:
+  overflow: hidden;
+  border-top: 1px solid #555;
+  border-bottom:  1px solid #555;
+  margin:20px 0;
+}
+.category a{
+  margin:10px; 
+  padding:5px 15px; 
+  background:#eee;
+  color:#222;
+  border:1px solid #bbb;
+}
+.category a:hover{
+  background:#000;
+  color:#fff;
+}
+.profile{
+  width:250px;
+  margin:10px auto;
+  background:#eeeeee;
+  border:.5px solid #ccc;
+  height:360px;
+  overflow: hidden;
+  border-radius: 5px;
+  padding:10px 0;
+}
+.profile img{
+  display:block;
+  width:130px;
+  height:130px;
+  border-radius: 50%;
+  margin:5px auto 5px;
+  background:#ddd;
+  box-shadow: inset 0 0 15px #000;
+}
+.profile .heading{
+  color:#009875;
+  margin:5px;
+}
+.profile .contact{
+  font-size: .7rem;
+  color:#999;
+  text-align: center;
+}
+.profile p{
+  padding:0 20px;
+  
+  margin:10px 0;
+  font-size:.8rem;
+  color:#555;
+}
+.social-handles{
+  width:150px;
+  display:flex;
+  margin:20px auto 0;
+  align-items: center ;
+  justify-content: space-between;
+  color:#555;
+}
+.social-handles a{
+  color:#555;
+}

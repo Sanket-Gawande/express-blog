@@ -1,0 +1,59 @@
+doctype html
+html
+  head 
+    style
+      include home.css
+  body
+    include ./partials/header.pug 
+ 
+    div.hero
+      div.quote-div
+        i.fas.fa-quote-left
+        p.quote Bahot rangeen hai jindagi, bss text editor vsCode hona chahiye
+        
+        p.author John doe
+        button.new-quote(
+        onclick="fetchQuote()")
+          i.fas.fa-redo-alt
+    div.date
+      h4  02-sept-2021
+      h4  Wednesday
+    div.container
+       
+      div.posts
+        each post in blogs
+          a(href=`blog/post/${post.id}`)
+            div.post
+              img(src=post.thumbnail)
+              h4.blog-heading= post.tittle
+              p.blog-text-content=post.description
+              span.post-date=post.time
+              span.post-user=post.user
+          
+      
+      div.aside
+        h4 About me
+        div.profile
+          img.owner-image(src='https://scontent.fnag6-1.fna.fbcdn.net/v/t1.6435-1/cp0/e15/q65/p720x720/134939878_465410821518442_6795194210328687604_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=IJbc5iyj1YQAX84xfLd&_nc_ht=scontent.fnag6-1.fna&oh=139f6e142a17476851221047898cbff7&oe=615414B2')
+          h4.heading Sanket Gawande
+          p.contact sanketgawande96k@gmail.com
+          p.about Im Btech 3rd year student , pursuing my course computer engineering at Government College of engineering , Yavatmal . I created this fictional blog site for my project in NodeJs 
+        div.social-handles
+          a(href="/") 
+            i.fab.fa-facebook-f
+          a(href="/") 
+            i.fab.fa-instagram
+          a(href="/") 
+            i.fab.fa-twitter
+          a(href="/") 
+            i.fab.fa-reddit
+        div.category
+          a.active(href="/category?category?") All
+          a(href="/category?category=") Food
+          a(href="/category?category=") College
+          a(href="/category?category=") Nature
+          a(href="/category?category=") Fitness
+          a(href="/category?category=") Decoration
+
+    include ./partials/footer.pug
+    
