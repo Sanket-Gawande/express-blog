@@ -347,7 +347,7 @@ app.post("/post", upload_thumbnail.single("thumbnail"), (req, res) => {
 
 /*------------------------------------------------------------*/
 // starting server
-app.listen(port, "localhost", () => {
+app.listen(port, () => {
   console.log("Server is running , port: ", port);
 });
 /*------------------------------------------------------------*/
