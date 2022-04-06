@@ -1,6 +1,6 @@
 
 .hero{
-  width:100vw;
+  width:100%;
   height:500px;
   background:url("https://images.unsplash.com/photo-1626816366619-f91a4d747ea7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=667&q=80") no-repeat center center/cover;
   display:grid;
@@ -32,7 +32,7 @@
 @media(max-width:768px){
   .quote-div{
     width:90%;
-    height:;
+    
   }
   .posts , .aside{
     width:100%;
@@ -194,7 +194,7 @@ a .post h4{
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width:100vw:
+  width:100%;
   overflow: hidden;
   border-top: 1px solid #555;
   border-bottom:  1px solid #555;

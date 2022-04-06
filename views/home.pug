@@ -16,8 +16,8 @@ html
         onclick="fetchQuote()")
           i.fas.fa-redo-alt
     div.date
-      h4  02-sept-2021
-      h4  Wednesday
+      h4= new Date().toLocaleString("en-US" , {day : "2-digit" , month : "short" })
+      h4=new Date().getFullYear()
     div.container
        
       div.posts

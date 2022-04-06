@@ -1,0 +1,51 @@
+Arguments: 
+  /home/sanketg/.nvm/versions/node/v16.14.2/bin/node /home/sanketg/.nvm/versions/node/v16.14.2/bin/yarn install
+
+PATH: 
+  /home/sanketg/.nvm/versions/node/v16.14.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+
+Yarn version: 
+  1.22.18
+
+Node version: 
+  16.14.2
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: connect EHOSTUNREACH 104.16.23.35:443
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1157:16)
+
+npm manifest: 
+  {
+    "name": "blog",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "-": "0.0.1",
+      "bcryptjs": "^2.4.3",
+      "dotenv": "^10.0.0",
+      "express": "^4.17.1",
+      "express-session": "^1.17.2",
+      "mongodb": "^4.1.1",
+      "mongoose": "^6.0.3",
+      "multer": "^1.4.3",
+      "mysql": "^2.18.1",
+      "nodemailer": "^6.6.3",
+      "pug": "^3.0.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
