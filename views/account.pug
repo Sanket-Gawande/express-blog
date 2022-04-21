@@ -4,6 +4,8 @@ head
   
   style
     include ./account.css
+  script 
+    include ./javascript.js
 body
   div.container
     form(
@@ -26,6 +28,7 @@ body
       input(
       type="file"
       id="profile"
+      oninput="profileEvent()"
       name="display-picture"
       
       )
@@ -94,6 +97,7 @@ body
       type="Submit"
      
       ) Post now 
+  h2.heading My posts
   div.posts-posted
 
         each post in blog
@@ -104,8 +108,8 @@ body
               )
               h4.blog-heading=post.tittle
               p.blog-text-content=post.description
-              span.post-date=post.time
-              span.post-user=post.user
+              span.post-date= post.time.toLocaleString("en-US" ,{day : "2-digit" ,  month : "short"  , year : "2-digit"})
+              
       
       
   include ./partials/footer

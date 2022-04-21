@@ -44,7 +44,7 @@ margin:20px auto;
   color:#009875;
   font-size: 1.3rem;
   font-weight: 600 !important;
- // border-bottom:.2px solid #009875;
+ 
 }
 .profile .email {
   color:#999;
@@ -52,7 +52,7 @@ margin:20px auto;
 .profile .bio{
   color:#555;font-size: 1rem;
   margin-bottom:10px!important;
- // border-bottom: .2px solid #555;
+ 
 }
 #profile{
   display:none;
@@ -68,7 +68,7 @@ margin:20px auto;
   background:none;
   border:none;
   color:#555;
-  //text-align: center;
+  
   display:block;
   margin:5px auto;
   width:90%;
@@ -91,6 +91,7 @@ margin:20px auto;
 }
 .post-thumbnail img{
   height:100%;
+  object-fit: cover;
   width:100%;
 }
 #thumbnail{display:none;}
@@ -136,13 +137,18 @@ margin:20px auto;
   overflow: scroll;
 
 }
+.heading{
+  padding: 1rem 0;
+  text-align: center;
+}
 .posts-posted a{
-  width:180px;
-  height:320px;
+  
+  width:220px;
+  height:300px;
   background:#fff;
   border-radius: 5px;
-  border:1px solid #ccc;
-  margin:20px;
+  border:1px solid #009875;
+  margin:10px;
 }
 .post {
   height:100%;
@@ -150,6 +156,7 @@ margin:20px auto;
   z-index: 1;
   overflow: hidden;
   position: relative;
+  
 }
 a .post:before{
   content: "";
@@ -158,6 +165,7 @@ a .post:before{
   width:100%;
   left:0;
   height:90px;
+  border-radius: .75rem;
   background:linear-gradient(to bottom , transparent , #fff);
 }
 .post img{
@@ -165,15 +173,10 @@ a .post:before{
   height:50%;
   background:#fff;
   padding:5px;
-  border-radius: 5px;
-}
-a .post h4{
-  margin:5px 0;
-  padding:5px;
-  font-size: .8rem;
-  color:#009875;
-  font-weight:bold;
+  border-radius: .75rem;
+  object-fit: cover;
   position: relative;
+  
 }
 .post h4:after{
   content:" ";
@@ -182,29 +185,39 @@ a .post h4{
   background:#009875;
   border-radius: 5px;
   position: absolute;
-  top:-5px;
+  top:-10px;
   margin-left:50%;
   left:-25px;
+}
+a .post h4{
+  margin:5px 0;
+  padding:5px .5rem;
+  font-size: .8rem;
+  color:#009875;
+  font-weight:bold;
+  position: relative;
 }
 .post p{
   font-size: .8rem;
   color:#555;
   margin:5px 0;
-  padding:5px;
+  padding:5px .5rem;
 }
-.post .post-date 
-{bottom:-15px}
-.post-date ,  .post-user{
+
+.post-date {
   display:block;
   width:100%;
   padding:0 10px;
   text-align: right;
-  font-size: .6rem;
-  color:#000;
+  font-size: .75rem;
+  color:#777;
   position: absolute;
-  bottom:20px;
+  bottom:.1rem;
   font-weight: 800 !important;
+  border-radius: .75rem;
+  background:transparent;
 }
+
 @media(max-width:768px){
   .container{
     flex-direction: column !important;

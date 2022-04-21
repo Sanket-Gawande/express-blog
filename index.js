@@ -1,24 +1,29 @@
-const express = require("express");
+import express, { urlencoded } from "express";
 const app = express();
-const session = require("express-session");
-const mongoose = require("mongoose");
+import session from "express-session";
+import mongoose from "mongoose";
+import fetch from "node-fetch";
 
-const path = require("path");
-const multer = require("multer");
-const bcryptjs = require("bcryptjs");
+import path from "path";
+import multer, { diskStorage } from "multer";
+import bcryptjs from "bcryptjs";
 
 const port = process.env.PORT || 8000;
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 var sess; // a variable for storing session.
 
 // middlware for multer
 //profile update storage engine
-const saveProfiles = multer.diskStorage({
+const saveProfiles = diskStorage({
   destination: (req, file, cb) => {
     cb(null, "profiles");
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "__" + file.originalname);
+    cb(
+      null,
+      Math.random().toString(32).substring(2) + "__" + file.originalname
+    );
   },
 });
 //
@@ -38,7 +43,7 @@ const upload_profile = multer({
 });
 
 //post thumbnail storage engine
-const saveThumbnail = multer.diskStorage({
+const saveThumbnail = diskStorage({
   destination: (req, file, cb) => {
     cb(null, "thumbnails");
   },
@@ -52,16 +57,16 @@ const upload_thumbnail = multer({
 
 // settings pug engine and views foldee
 app.set("view engine", "pug");
-app.set("views", path.join(__dirname, "views"));
+app.set("views", "views");
 app.use(
-  express.urlencoded({
+  urlencoded({
     extended: true,
   })
 );
 
 // joining  folders
-app.use(express.static(path.join(__dirname, "profiles")));
-app.use(express.static(path.join(__dirname, "thumbnails")));
+app.use(express.static("profiles"));
+app.use(express.static("thumbnails"));
 
 //settings session related stuffs
 app.use(
@@ -107,19 +112,39 @@ const collection = mongoose.model("blog", schema);
 //home page
 app.get("/", (req, res) => {
   sess = req.session;
+  const url = "http://quotes.stormconsultancy.co.uk/random.json";
+  const quote = async () => {
+    const obj = await fetch(url);
+    const json = await obj.json();
+    
+    return json;
+  };
   async function render_home() {
     try {
       const blog = await post_collection.find();
+     
       res.status(200).render("home", {
         session: sess,
         blogs: blog,
+        quote :await quote(),
       });
+      
     } catch {
       (err) => console.log(err);
     }
   }
   render_home();
 });
+
+/*------------------------------------------------------------*/
+
+// about page !!
+ app.get("/about"  , (req , res) => {
+   sess = req.session
+   res.status(200).render("about" , {
+     session  :sess,
+   } )
+ })
 
 /*------------------------------------------------------------*/
 
@@ -230,9 +255,9 @@ app.post("/signup", (req, res) => {
 app.get("/hash", (req, res) => {
   const string = "Sanket";
   async function hashing() {
-    const hash = await bcryptjs.hash(string, 10);
+    const hash = await _hash(string, 10);
 
-    const result = await bcryptjs.compare(string, hash);
+    const result = await compare(string, hash);
     console.log(hash, result);
   }
   hashing();

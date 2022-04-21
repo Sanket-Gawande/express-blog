@@ -3,15 +3,16 @@ html
   head 
     style
       include home.css
+    script  
+      include ./javascript.js
   body
     include ./partials/header.pug 
- 
+    
     div.hero
       div.quote-div
         i.fas.fa-quote-left
-        p.quote Bahot rangeen hai jindagi, bss text editor vsCode hona chahiye
-        
-        p.author John doe
+        p.quote=quote.quote
+        p.author=quote.author
         button.new-quote(
         onclick="fetchQuote()")
           i.fas.fa-redo-alt
@@ -27,8 +28,8 @@ html
               img(src=post.thumbnail)
               h4.blog-heading= post.tittle
               p.blog-text-content=post.description
-              span.post-date=post.time
-              span.post-user=post.user
+              span.post-date= post.time.toLocaleString("en-US" , {day : "2-digit" ,  month : "short"  , year : "2-digit"})
+              //- span.post-user=post.user.substring(0,10) + "..."
           
       
       div.aside

@@ -1,0 +1,20 @@
+.breadcrumb{
+    background: #ddd;
+padding: .5rem 1rem ;
+font-size: .8rem;
+font-weight: 500;
+}
+.main{
+    padding: 2rem;
+    max-width: 800px;
+    margin: 1rem auto;
+}
+.main .heading{
+    color: teal;
+    padding: 1rem 0;
+}
+.main p{
+    color: #454;
+    margin: 1rem 0;
+    line-height: 1.5rem;
+}
