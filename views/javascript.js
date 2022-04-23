@@ -80,4 +80,9 @@ thumbnail.onchange = function () {
  const profileEvent = () => {
   console.log("it works !")
 }
+
+
 console.log("afn kdhtio")
+function  click(){
+  console.log("it clicked !!!")
+}

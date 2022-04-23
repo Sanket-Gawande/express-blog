@@ -1,11 +1,10 @@
 head
   include ./partials/header.pug
-  
+  title  My account | express-it
   
   style
     include ./account.css
-  script 
-    include ./javascript.js
+
 body
   div.container
     form(
@@ -101,7 +100,7 @@ body
   div.posts-posted
 
         each post in blog
-          a(href=`blog/user/${post.id}`)
+          a(href=`blog/post/${post.id}`)
             div.post
               img(
               src=post.thumbnail

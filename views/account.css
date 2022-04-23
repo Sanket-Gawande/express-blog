@@ -141,6 +141,10 @@ margin:20px auto;
   padding: 1rem 0;
   text-align: center;
 }
+
+.posts-posted::-webkit-scrollbar{
+  display: none;
+}
 .posts-posted a{
   
   width:220px;

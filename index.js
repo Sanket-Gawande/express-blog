@@ -4,7 +4,6 @@ import session from "express-session";
 import mongoose from "mongoose";
 import fetch from "node-fetch";
 
-import path from "path";
 import multer, { diskStorage } from "multer";
 import bcryptjs from "bcryptjs";
 
@@ -31,7 +30,7 @@ const saveProfiles = diskStorage({
 
 mongoose
   .connect(
-    "mongodb+srv://sanketg:PnP4aw4NHlL8AsPB@cluster0.frvti.mongodb.net/blog",
+    process.env.MONGO_URI,
     { useUnifiedTopology: true }
   )
   .then(() => {
@@ -48,14 +47,15 @@ const saveThumbnail = diskStorage({
     cb(null, "thumbnails");
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "__" + file.originalname);
+    cb(null, Math.random().toString(32).substring(2)  + "__" + file.originalname);
   },
 });
 const upload_thumbnail = multer({
   storage: saveThumbnail,
 });
 
-// settings pug engine and views foldee
+// settings pug engine and views folder
+app.use(express.static("javascript"))
 app.set("view engine", "pug");
 app.set("views", "views");
 app.use(
@@ -90,7 +90,10 @@ const schema = mongoose.Schema({
     required: true,
     unique: true,
   },
-  profile_pic: String,
+  profile_pic: {
+    type : String,
+    default  :"/user.gif"
+  },
   password: {
     type: String,
     required: true,
@@ -105,13 +108,14 @@ const schema = mongoose.Schema({
   },
 });
 
-const collection = mongoose.model("blog", schema);
+const collection = mongoose.model("users", schema);
 
 //End points
 
 //home page
 app.get("/", (req, res) => {
   sess = req.session;
+  
   const url = "http://quotes.stormconsultancy.co.uk/random.json";
   const quote = async () => {
     const obj = await fetch(url);
@@ -135,6 +139,20 @@ app.get("/", (req, res) => {
   }
   render_home();
 });
+
+/*------------------------------------------------------------*/
+
+//individual  post page
+app.get("/blog/post/:postid" ,async (req, res) => {
+  
+  const sess = req.session;
+  const post= await post_collection.findOne({_id : req.params.postid});
+  
+  res.render("post" ,{
+    post ,
+    session : sess
+  } )
+})
 
 /*------------------------------------------------------------*/
 
@@ -166,12 +184,15 @@ app.post("/login", (req, res) => {
       const check = await collection.find({
         email: obj.email,
       });
+      
       if (check.length > 0) {
         const hashed_pass = check[0].password;
         const plain_text = obj.password;
         const compare_result = await bcryptjs.compare(plain_text, hashed_pass);
         if (compare_result) {
           sess.user = obj.email;
+          sess.username = check[0].fname + " " + check[0].lname;
+          sess.profile_pic  = check[0].profile_pic;
           res.redirect("/");
         } else {
           res.status(200).render("login", {
@@ -229,7 +250,7 @@ app.post("/signup", (req, res) => {
 
         const documentData = await new collection(obj);
         const saveDocument = await documentData.save();
-        console.log(saveDocument);
+        // console.log(saveDocument);
 
         res.render("login", {
           msg: `"${obj.email}" Your account has been created successfully , login here.`,
@@ -237,7 +258,7 @@ app.post("/signup", (req, res) => {
         });
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       res.status(200).render("signup", {
         msg: "All fields are mandatory .",
         form: formData,
@@ -258,7 +279,7 @@ app.get("/hash", (req, res) => {
     const hash = await _hash(string, 10);
 
     const result = await compare(string, hash);
-    console.log(hash, result);
+    // console.log(hash, result);
   }
   hashing();
   res.send("Hashed");
@@ -334,7 +355,7 @@ app.post(
             },
           }
         );
-        console.log(result);
+        // console.log(result);
         res.redirect("/profile");
       } catch {
         (err) => console.log(err);
@@ -352,6 +373,8 @@ const post_schema = mongoose.Schema({
   tittle: { type: String, required: true },
   description: { type: String, required: true },
   user: { type: String, required: true },
+  username: { type: String, required: true },
+  profile_pic: { type: String, required: true },
   time: { type: Date, default: Date.now },
 });
 const post_collection = mongoose.model("blog_posts", post_schema);
@@ -362,6 +385,8 @@ app.post("/post", upload_thumbnail.single("thumbnail"), (req, res) => {
     tittle: req.body.tittle,
     description: req.body.discription,
     user: req.session.user,
+    username  :req.session.username,
+    profile_pic  :req.session.profile_pic
   });
   blog_document
     .save()
@@ -376,3 +401,4 @@ app.listen(port, () => {
   console.log("Server is running , port: ", port);
 });
 /*------------------------------------------------------------*/
+
