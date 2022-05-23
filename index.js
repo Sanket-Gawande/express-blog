@@ -6,12 +6,13 @@ import fetch from "node-fetch";
 
 import multer, { diskStorage } from "multer";
 import bcryptjs from "bcryptjs";
-
+import path from "path";
 const port = process.env.PORT || 8000;
 import dotenv from "dotenv";
 dotenv.config();
-var sess; // a variable for storing session.
 
+var sess; // a variable for storing session.
+app.use("assets", express.static("views/images"));
 // middlware for multer
 //profile update storage engine
 const saveProfiles = diskStorage({
@@ -29,10 +30,7 @@ const saveProfiles = diskStorage({
 // connection to databse
 
 mongoose
-  .connect(
-    process.env.MONGO_URI,
-    { useUnifiedTopology: true }
-  )
+  .connect(process.env.MONGO_URI, { useUnifiedTopology: true })
   .then(() => {
     console.log({ msg: "Connected to databse" });
   });
@@ -47,7 +45,10 @@ const saveThumbnail = diskStorage({
     cb(null, "thumbnails");
   },
   filename: (req, file, cb) => {
-    cb(null, Math.random().toString(32).substring(2)  + "__" + file.originalname);
+    cb(
+      null,
+      Math.random().toString(32).substring(2) + "__" + file.originalname
+    );
   },
 });
 const upload_thumbnail = multer({
@@ -55,7 +56,7 @@ const upload_thumbnail = multer({
 });
 
 // settings pug engine and views folder
-app.use(express.static("javascript"))
+app.use(express.static("javascript"));
 app.set("view engine", "pug");
 app.set("views", "views");
 app.use(
@@ -91,8 +92,8 @@ const schema = mongoose.Schema({
     unique: true,
   },
   profile_pic: {
-    type : String,
-    default  :"/user.gif"
+    type: String,
+    default: "/user.gif",
   },
   password: {
     type: String,
@@ -115,24 +116,23 @@ const collection = mongoose.model("users", schema);
 //home page
 app.get("/", (req, res) => {
   sess = req.session;
-  
+
   const url = "http://quotes.stormconsultancy.co.uk/random.json";
   const quote = async () => {
     const obj = await fetch(url);
     const json = await obj.json();
-    
+
     return json;
   };
   async function render_home() {
     try {
       const blog = await post_collection.find();
-     
+
       res.status(200).render("home", {
         session: sess,
         blogs: blog,
-        quote :await quote(),
+        quote: await quote(),
       });
-      
     } catch {
       (err) => console.log(err);
     }
@@ -143,26 +143,25 @@ app.get("/", (req, res) => {
 /*------------------------------------------------------------*/
 
 //individual  post page
-app.get("/blog/post/:postid" ,async (req, res) => {
-  
+app.get("/blog/post/:postid", async (req, res) => {
   const sess = req.session;
-  const post= await post_collection.findOne({_id : req.params.postid});
-  
-  res.render("post" ,{
-    post ,
-    session : sess
-  } )
-})
+  const post = await post_collection.findOne({ _id: req.params.postid });
+
+  res.render("post", {
+    post,
+    session: sess,
+  });
+});
 
 /*------------------------------------------------------------*/
 
 // about page !!
- app.get("/about"  , (req , res) => {
-   sess = req.session
-   res.status(200).render("about" , {
-     session  :sess,
-   } )
- })
+app.get("/about", (req, res) => {
+  sess = req.session;
+  res.status(200).render("about", {
+    session: sess,
+  });
+});
 
 /*------------------------------------------------------------*/
 
@@ -184,7 +183,7 @@ app.post("/login", (req, res) => {
       const check = await collection.find({
         email: obj.email,
       });
-      
+
       if (check.length > 0) {
         const hashed_pass = check[0].password;
         const plain_text = obj.password;
@@ -192,7 +191,7 @@ app.post("/login", (req, res) => {
         if (compare_result) {
           sess.user = obj.email;
           sess.username = check[0].fname + " " + check[0].lname;
-          sess.profile_pic  = check[0].profile_pic;
+          sess.profile_pic = check[0].profile_pic;
           res.redirect("/");
         } else {
           res.status(200).render("login", {
@@ -385,8 +384,8 @@ app.post("/post", upload_thumbnail.single("thumbnail"), (req, res) => {
     tittle: req.body.tittle,
     description: req.body.discription,
     user: req.session.user,
-    username  :req.session.username,
-    profile_pic  :req.session.profile_pic
+    username: req.session.username,
+    profile_pic: req.session.profile_pic,
   });
   blog_document
     .save()
@@ -401,4 +400,3 @@ app.listen(port, () => {
   console.log("Server is running , port: ", port);
 });
 /*------------------------------------------------------------*/
-

@@ -3,7 +3,7 @@ async function fetchQuote() {
   let quote = document.querySelector(".quote");
   let author = document.querySelector(".author");
 
-  const url = "http://quotes.stormconsultancy.co.uk/random.json";
+  const url = "https://quotes.stormconsultancy.co.uk/random.json";
   fetch(url)
     .then((res) => res.json())
     .then((obj) => {
