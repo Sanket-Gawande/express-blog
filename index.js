@@ -355,6 +355,8 @@ app.post(
           }
         );
         // console.log(result);
+        req.session.profile_pic = req.body["display-picture"];
+        req.session.name = req.body.email;
         res.redirect("/profile");
       } catch {
         (err) => console.log(err);
@@ -397,6 +399,6 @@ app.post("/post", upload_thumbnail.single("thumbnail"), (req, res) => {
 /*------------------------------------------------------------*/
 // starting server
 app.listen(port, () => {
-  console.log("Server is running , port: ", port);
+  console.log(`Application is live now. click here to open in browser : http://localhost:${port}`);
 });
 /*------------------------------------------------------------*/
