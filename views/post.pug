@@ -17,7 +17,7 @@ body
         )
        h4=post.username
        p=post.user
-       p 21, Apr 2022
+       p= new  Date(post.time ).toLocaleString("en-US" , {day : "2-digit" , month : "short"  , year : "2-digit"})
      .post-content
        h2=post.tittle
        p.description=post.description
