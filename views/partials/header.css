@@ -1,55 +1,63 @@
-@import url('https://fonts.googleapis.com/css2?family=Satisfy&family=Ubuntu:wght@300&display=swap');
- @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&family=Ubuntu:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
-*{
-  margin:0;
-  padding:0;
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   list-style: none;
 }
-body{
-
+body {
   min-height: 100vh;
 }
-body::-webkit-scrollbar{
-  width: .25rem;
+body::-webkit-scrollbar {
+  width: 0.25rem;
 }
-body::-webkit-scrollbar-thumb{
+body::-webkit-scrollbar-thumb {
   background: #009875;
 }
-nav{
-  width:100%;
-  padding:10px;
-  background:#fff;
-  }
-nav .logo{
-  padding:0 0 5px;
-  color:#000;
+nav {
+  width: 100%;
+  padding: 10px;
+  background: #fff;
+}
+nav .logo {
+  padding: 0 0 5px;
+  color: #000;
   text-align: center;
   display: block;
-  height:50px;
+  height: 50px;
   font-size: 2rem;
-  font-family: 'Satisfy', cursive;
-  font-weight: 300!important;
-  color:#009875
+  font-family: "Satisfy", cursive;
+  font-weight: 300 !important;
+  color: #009875;
 }
-nav .menu{
-  display:flex;
+@media screen and (max-width: 668px) {
+  .menu li {
+    margin: 0 10px;
+  }
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+nav .menu {
+  display: flex;
   justify-content: center;
-  border-top:.5px dotted #999;
-  border-bottom:.5px dotted #999;
+  border-top: 0.5px dotted #999;
+  border-bottom: 0.5px dotted #999;
   align-items: center;
-  
 }
-.menu li{
-  margin:0 10px;
-  color:#888;
+.menu li {
+  margin: 0 20px;
+  color: #888;
 }
-.menu li:hover{
-  color:#000;
+.menu li:hover {
+  color: #000;
 }
-.menu a{
+.menu a {
   color: inherit;
 }
