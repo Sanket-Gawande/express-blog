@@ -33,7 +33,8 @@ mongoose
   .connect(process.env.MONGO_URI, { useUnifiedTopology: true })
   .then(() => {
     console.log({ msg: "Connected to databse" });
-  });
+  })
+  .catch((err) => console.log({ err }));
 
 const upload_profile = multer({
   storage: saveProfiles,
@@ -399,6 +400,8 @@ app.post("/post", upload_thumbnail.single("thumbnail"), (req, res) => {
 /*------------------------------------------------------------*/
 // starting server
 app.listen(port, () => {
-  console.log(`Application is live now. click here to open in browser : http://localhost:${port}`);
+  console.log(
+    `Application is live now. click here to open in browser : http://localhost:${port}`
+  );
 });
 /*------------------------------------------------------------*/
