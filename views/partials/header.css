@@ -34,9 +34,10 @@ nav .logo {
   font-weight: 300 !important;
   color: #009875;
 }
-@media screen and (max-width: 668px) {
+@media screen and (max-width: 600px) {
   .menu li {
     margin: 0 10px;
+    color: #888;
   }
 }
 .navbar {
@@ -51,9 +52,11 @@ nav .menu {
   border-bottom: 0.5px dotted #999;
   align-items: center;
 }
-.menu li {
-  margin: 0 20px;
-  color: #888;
+@media screen and (min-width: 600px) {
+  .menu li {
+    margin: 0 20px;
+    color: #888;
+  }
 }
 .menu li:hover {
   color: #000;
